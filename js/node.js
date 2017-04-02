@@ -1,29 +1,19 @@
-var tree
-
-// necessary function on P5
-function setup() {
-  noCanvas()
-
-  tree = new Tree()
-  tree.addValue(86)
-  tree.addValue(23)
-  tree.addValue(7)
-  tree.addValue(6)
-  console.log(tree)
-  tree.traverse()
-}
-
-function Tree() {
-  this.root = null
-}
-
 function Node(val) {
   this.value = val
   this.left = null
   this.right = null
 }
 
-
+Node.prototype.search = function(val) {
+  if (this.value == val) {
+    return this
+  } else if (val < this.value && this.left != null) {
+    return this.left.search(val)
+  }
+  else if (val < this.value && this.right != null) {
+    return this.right.search(val)
+  }
+}
 
 Node.prototype.addNode = function(n) {
   if (n.value < this.value) {
@@ -50,18 +40,5 @@ Node.prototype.visit = function() {
 
   if (this.right != null) {
     this.right.visit()
-  }
-}
-
-Tree.prototype.traverse = function() {
-  this.root.visit()
-}
-
-Tree.prototype.addValue = function(val) {
-  var n = new Node(val)
-  if (this.root === null) {
-    this.root = n
-  } else {
-    this.root.addNode(n)
   }
 }
