@@ -22,10 +22,24 @@ function setup() {
       if (!actorNode) {
         var actorNode = new Node(actor)
       }
-      
+
       graph.addNode(actorNode)
       movieNode.addEdge(actorNode)
     }
   }
-console.log(graph)
+
+  var start = graph.setStart('Kevin Bacon')
+  var end = graph.setEnd('Kevin Bacon')
+
+  console.log(graph)
+  var queue = []
+
+  start.searched = true
+  queue.push(start)
+  while (queue.length > 0) {
+    var current = queue.shift()
+    if (current == end) {
+      console.log("Found " + current.value)
+    }
+  }
 }
