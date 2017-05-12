@@ -14,6 +14,13 @@ Graph.prototype.addNode = function(n) {
 
 }
 
+Graph.prototype.reset = function() {
+  for (var i = 0; i < this.nodes.length; i++) {
+    this.nodes[i].searched = false
+    this.nodes[i].parent = null
+  }
+}
+
 Graph.prototype.getNode = function(actor) {
   var n = this.graph[actor]
   return n
